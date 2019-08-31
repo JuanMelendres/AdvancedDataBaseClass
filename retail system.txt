@@ -1,0 +1,111 @@
+* Create keyspaces:
+
+  -> CREATE KEYSPACE IF NOT EXISTS retail_system WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 };
+
+* Create column family (create table):
+  
+  -> CREATE TABLE retail_system.record_individual_sales (articleid text, article text, quantity int, saledate text, price int, sale int, PRIMARY KEY(article, quantity));
+
+  -> CREATE TABLE retail_system.sales_by_article (articleid text, article text, quantity int, income int, saledate text, PRIMARY KEY(articleid, article, quantity));
+
+  -> CREATE TABLE retail_system.sales_by_month (articleid text, article text, quantity int, month text, income int, PRIMARY KEY(article, quantity, month));
+
+  -> CREATE TABLE retail_system.sales_by_month_and_by_article (articleid text, article text, month text, quantity int, income int, saledate text, PRIMARY KEY(article, month, quantity, income));
+
+* Insert data:
+  
+  record_individual_sales: 
+
+    -> INSERT INTO retail_system.record_individual_sales (articleid, article, quantity, saledate, price, sale) VALUES ('PR34A56', 'Phone', 1, '2019-09-01', 35, 1);
+
+    -> INSERT INTO retail_system.record_individual_sales (articleid, article, quantity, saledate, price, sale) VALUES ('PR32A53', 'PC', 1, '2019-09-01', 245, 1);
+
+    -> INSERT INTO retail_system.record_individual_sales (articleid, article, quantity, saledate, price, sale) VALUES ('PR24A36', 'Headphones', 5, '2019-09-02', 250, 1);
+
+    -> INSERT INTO retail_system.record_individual_sales (articleid, article, quantity, saledate, price, sale) VALUES ('PR14A26', 'Soap', 15, '2019-09-05', 105, 1);
+
+    -> INSERT INTO retail_system.record_individual_sales (articleid, article, quantity, saledate, price, sale) VALUES ('PR64A36', 'Chocolate', 56, '2019-09-12', 5, 1);
+
+    -> INSERT INTO retail_system.record_individual_sales (articleid, article, quantity, saledate, price, sale) VALUES ('PR91A42', 'Cookies', 102, '2019-09-05', 15, 1);
+
+    -> INSERT INTO retail_system.record_individual_sales (articleid, article, quantity, saledate, price, sale) VALUES ('PR21A12', 'Meat', 25, '2019-09-02', 25, 1);
+
+    -> INSERT INTO retail_system.record_individual_sales (articleid, article, quantity, saledate, price, sale) VALUES ('PR91A22', 'Cheese', 20, '2019-09-01', 15, 1);
+
+    -> INSERT INTO retail_system.record_individual_sales (articleid, article, quantity, saledate, price, sale) VALUES ('PR42A54', 'T-shirt', 35, '2019-09-05', 45, 1);
+
+    -> INSERT INTO retail_system.record_individual_sales (articleid, article, quantity, saledate, price, sale) VALUES ('PR85A43', 'Banana', 45, '2019-09-02', 8, 1);
+
+    -> INSERT INTO retail_system.record_individual_sales (articleid, article, quantity, saledate, price, sale) VALUES ('PR61A29', 'Tomato', 65, '2019-09-03', 5, 1);
+
+  sales_by_article:
+
+    -> INSERT INTO retail_system.sales_by_article (articleid, article, quantity, income, saledate) VALUES ('PR34A56', 'Phone', 15, 3500, '2019-09-01');
+
+    -> INSERT INTO retail_system.sales_by_article (articleid, article, quantity, income, saledate) VALUES ('PR32A53', 'PC', 25, 6550, '2019-09-01');
+
+    -> INSERT INTO retail_system.sales_by_article (articleid, article, quantity, income, saledate) VALUES ('PR14A26', 'Soap', 50, 3500, '2019-09-02');
+
+    -> INSERT INTO retail_system.sales_by_article (articleid, article, quantity, income, saledate) VALUES ('PR04A60', 'Milk', 1024, 8540, '2019-09-01');
+
+    -> INSERT INTO retail_system.sales_by_article (articleid, article, quantity, income, saledate) VALUES ('PR64A36', 'Chocolate', 56, 256, '2019-09-12');
+
+    -> INSERT INTO retail_system.sales_by_article (articleid, article, quantity, income, saledate) VALUES ('PR91A42', 'Cookies', 102, 1530, '2019-09-05');
+
+    -> INSERT INTO retail_system.sales_by_article (articleid, article, quantity, income, saledate) VALUES ('PR21A12', 'Meat', 25, 500, '2019-09-02');
+
+    -> INSERT INTO retail_system.sales_by_article (articleid, article, quantity, income, saledate) VALUES ('PR91A22', 'Cheese', 20, 300, '2019-09-01');
+
+    -> INSERT INTO retail_system.sales_by_article (articleid, article, quantity, income, saledate) VALUES ('PR42A54', 'T-shirt', 35, 1575, '2019-09-05');
+
+    -> INSERT INTO retail_system.sales_by_article (articleid, article, quantity, income, saledate) VALUES ('PR85A43', 'Banana', 45, 360, '2019-09-02');
+
+    -> INSERT INTO retail_system.sales_by_article (articleid, article, quantity, income, saledate) VALUES ('PR61A29', 'Tomato', 65, 325, '2019-09-03');
+
+  sales_by_month:
+
+    -> INSERT INTO retail_system.sales_by_month (articleid, article, quantity, month, income) VALUES ('PR34A56', 'Phone', 64, 'September', 15000);
+
+    -> INSERT INTO retail_system.sales_by_month (articleid, article, quantity, month, income) VALUES ('PR14A26', 'Soap', 350, 'October', 32000);
+
+    -> INSERT INTO retail_system.sales_by_month (articleid, article, quantity, month, income) VALUES ('PR04A60', 'Milk', 500, 'November', 4560);
+
+    -> INSERT INTO retail_system.sales_by_month (articleid, article, quantity, month, income) VALUES ('PR32A53', 'PC', 102, 'September', 46000);
+
+    -> INSERT INTO retail_system.sales_by_month (articleid, article, quantity, month, income) VALUES ('PR64A36', 'Chocolate', 56, 'September', 256);
+
+    -> INSERT INTO retail_system.sales_by_month (articleid, article, quantity, month, income) VALUES ('PR91A42', 'Cookies', 102, 'November', 1530);
+
+    -> INSERT INTO retail_system.sales_by_month (articleid, article, quantity, month, income) VALUES ('PR21A12', 'Meat', 25, 'December', 500);
+
+    -> INSERT INTO retail_system.sales_by_month (articleid, article, quantity, month, income) VALUES ('PR91A22', 'Cheese', 20, 'October', 300);
+
+    -> INSERT INTO retail_system.sales_by_month (articleid, article, quantity, month, income) VALUES ('PR42A54', 'T-shirt', 35, 'December',  1575);
+
+    -> INSERT INTO retail_system.sales_by_month (articleid, article, quantity, month, income) VALUES ('PR85A43', 'Banana', 45, 'September', 360);
+
+    -> INSERT INTO retail_system.sales_by_month (articleid, article, quantity, month, income) VALUES ('PR61A29', 'Tomato', 65, 'November', 325);
+
+  sales_by_month_and_by_article:
+
+    -> INSERT INTO retail_system.sales_by_month (articleid, article, quantity, month, income, saledate) VALUES ('PR34A56', 'Phone', 64, 'September', 15000, '2019-09');
+
+    -> INSERT INTO retail_system.sales_by_month (articleid, article, quantity, month, income, saledate) VALUES ('PR04A60', 'Milk', 104, 'October', 50000, '2019-10');
+
+    -> INSERT INTO retail_system.sales_by_month (articleid, article, quantity, month, income, saledate) VALUES ('PR14A26', 'Soap', 350, 'December', 5760, '2019-12');
+
+    -> INSERT INTO retail_system.sales_by_month (articleid, article, quantity, month, income, saledate) VALUES ('PR24A36', 'Headphones', 64, 'November', 4000, '2019-11');
+
+    -> INSERT INTO retail_system.sales_by_month (articleid, article, quantity, month, income, saledate) VALUES ('PR64A36', 'Chocolate', 56, 'September', 256, '2019-09');
+
+    -> INSERT INTO retail_system.sales_by_month (articleid, article, quantity, month, income, saledate) VALUES ('PR91A42', 'Cookies', 102, 'August', 1530, '2019-08');
+
+    -> INSERT INTO retail_system.sales_by_month (articleid, article, quantity, month, income, saledate) VALUES ('PR21A12', 'Meat', 25, 'October', 500, '2019-10');
+
+    -> INSERT INTO retail_system.sales_by_month (articleid, article, quantity, month, income, saledate) VALUES ('PR91A22', 'Cheese', 20, 'November', 300, '2019-11');
+
+    -> INSERT INTO retail_system.sales_by_month (articleid, article, quantity, month, income, saledate) VALUES ('PR42A54', 'T-shirt', 35, 'September', 1575, '2019-09');
+
+    -> INSERT INTO retail_system.sales_by_month (articleid, article, quantity, month, income, saledate) VALUES ('PR85A43', 'Banana', 45, 'August', 360, '2019-08');
+
+    -> INSERT INTO retail_system.sales_by_month (articleid, article, quantity, month, income, saledate) VALUES ('PR61A29', 'Tomato', 65, 'October', 325, '2019-10');
