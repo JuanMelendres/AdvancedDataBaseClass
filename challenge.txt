@@ -1,0 +1,17 @@
+-> CREATE KEYSPACE IF NOT EXISTS company WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 };
+
+* Create column family (create table):
+  
+  -> create table company.products (product_name text PRIMARY KEY, ingredients map<text, text>, sales_points set<text>, name_of_person_resp map<text, text>, sales_by_day LIST<int>);
+
+* Insert data:
+
+  -> INSERT INTO company.products (product_name, ingredients, sales_points, name_of_person_resp, sales_by_day) values ('diet coke 1 L', {'water':'50%', 'sugar':'25%', 'coke flavor':'25%'}, {'walmart','soriana', 'fresko'}, {'Mon':'Juan Perez','Tue':'Luis Rodriguez', 'Wed':'Marco Ortiz', 'Thu':'Hector Diaz', 'Fri':'Maria Hernandez', 'Sat':'Valeria Sanchez', 'Sun':'Luisa Perez'}, [58,100,123,122,89]);
+
+* Update data:
+
+   -> UPDATE company.products SET sales_by_day = sales_by_day + [58] WHERE product_name = 'diet coke 1 L';
+
+* Update data:
+
+   -> DELETE sales_points['fresko'] FROM company.products WHERE product_name = 'diet coke 1 L';
