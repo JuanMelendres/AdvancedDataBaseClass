@@ -47,7 +47,3 @@
   INSERT INTO la_liga_mx.season (club, total_games, win_games, draw_games, lost_games, goals_favor, goals_against, goal_difference, points) VALUES ('FC Juarez', 11, 3, 2, 6, 8, 14, -6, 11);
 
   INSERT INTO la_liga_mx.season (club, total_games, win_games, draw_games, lost_games, goals_favor, goals_against, goal_difference, points) VALUES ('Veracruz', 11, 0, 3, 8, 6, 29, -23, 3);
-
-//Query:
-  
-  SELECT * FROM la_liga_mx.season WHERE club = *;
