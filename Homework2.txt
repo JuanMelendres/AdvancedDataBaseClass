@@ -1,0 +1,18 @@
+Author: Juan Antonio Melendres Villa A00369017
+
+* Create the CSV file in R:
+
+  # Write the csv file
+  -> write.csv(data.set, file = "DataSet.csv")
+
+* Create KEYPACES:
+  
+  -> CREATE KEYSPACE IF NOT EXISTS class WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 };
+
+* Create column family (create table):
+  
+  -> CREATE TABLE class.data (name text, age int, lastname text, countryoforigin text, cityoforigin text, favoritebook text, lengthofhair int, familysize int, degree text, height float, fear text, nativelanguage text, semester int, PRIMARY KEY(name, lastname));
+
+* Insert data:
+
+  -> COPY class.data (name, age, lastname, countryoforigin, cityoforigin, favoritebook, lengthofhair, familysize, degree, height, fear, nativelanguage, semester) FROM '/Users/juanantoniomelendresvilla/Downloads/DataSet.csv' WITH DELIMITER=',' AND HEADER=TRUE;
