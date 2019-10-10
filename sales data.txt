@@ -1,0 +1,23 @@
+-> CREATE KEYSPACE IF NOT EXISTS ventastec WITH REPLICATION = {'class' : 'SimpleStrategy', 'replication_factor' : 1 } ;
+
+-> CREATE TABLE ventastec.venta_diaria_por_producto (producto text, fecha text, cantidad int, preciounitario double, PRIMARY KEY(fecha, producto));
+
+-> CREATE TABLE ventastec.venta_mensual_por_producto (producto text, mes text, ventasmensuales int, PRIMARY KEY(producto, mes));
+  
+  -> INSERT INTO ventastec.venta_diaria_por_producto (producto, fecha, cantidad, preciounitario)VALUES ('pinguinos','2019-01-01',100,18.5);
+
+  -> INSERT INTO ventastec.venta_diaria_por_producto (producto, fecha, cantidad, preciounitario) VALUES ('pinguinos','2019-01-31',250,18.5);
+
+  -> INSERT INTO ventastec.venta_diaria_por_producto (producto, fecha, cantidad, preciounitario) VALUES ('pinguinos','2019-02-11',89,18.5);
+
+  -> INSERT INTO ventastec.venta_diaria_por_producto (producto, fecha, cantidad, preciounitario) VALUES ('pinguinos','2019-02-14',678,18.5);
+
+  -> INSERT INTO ventastec.venta_diaria_por_producto (producto, fecha, cantidad, preciounitario) VALUES ('pinguinos','2019-02-28',50,18.5);
+
+  -> INSERT INTO ventastec.venta_diaria_por_producto (producto, fecha, cantidad, preciounitario) VALUES ('gansitos','2019-02-14',555,11.5);
+
+  -> INSERT INTO ventastec.venta_diaria_por_producto (producto, fecha, cantidad, preciounitario) VALUES ('chocoroles','2019-03-03',120,15);
+
+  -> INSERT INTO ventastec.venta_diaria_por_producto (producto, fecha, cantidad, preciounitario) VALUES ('takis fuego','2019-01-15',1000,14);
+
+  -> INSERT INTO ventastec.venta_diaria_por_producto (producto, fecha, cantidad, preciounitario) VALUES ('takis fuego','2019-01-16',15000,14);
