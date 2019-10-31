@@ -1,0 +1,133 @@
+-> run mongo:
+
+    * brew services restart mongodb-community@4.2
+    * mongo
+
+-> Show database:
+
+    * show databases
+
+-> Create database:
+
+  * use restaurants
+
+-> Check current database:
+
+  * db
+
+-> Insert into database:
+
+  *
+  db.example.insert( {
+    "name":"El chololo",
+    "address":"Carretera Chapala No. 555",
+    "restaurantId":12345,
+    "servesAlcohol":true,
+    "menu":[
+      {"item":"birria chivo",
+      "price": 50.00},
+      {"item":"birria res",
+      "price": 55.50},
+      {"item":"jericalla",
+      "price": 20.00}
+    ],
+    "info":{
+      "description":"restaurante tradicional de birria",
+      "stars" : 5
+    }
+  } );
+
+  *
+  db.example.insert( {
+    "name":"Qin",
+    "address":"Av. Santa Margarita No. 317",
+    "restaurantId":12325,
+    "servesAlcohol":false,
+    "menu":[
+      {"item":"combo 1",
+      "price": 125.00},
+      {"item":"combo 2",
+      "price": 160.00},
+      {"item":"rollo primavera",
+      "price": 25.00}
+    ],
+    "info":{
+      "description":"Comida china rapida, cambian los menu dependiendo de la temporada",
+      "stars" : 5
+    }
+  } );
+
+  *
+  db.example.insert( {
+    "name":"fu-jou",
+    "address":"Calle Dos de Mayo 416 Miraflores, Lima, Peru",
+    "restaurantId":33333,
+    "servesAlcohol":true,
+    "menu":[
+      {"item":"chancho a la miel",
+      "price": 200.00},
+      {"item":"wam tan",
+      "price": 100.00},
+      {"item":"té",
+      "price": "It's cheap"}
+    ],
+    "info":{
+      "description":"restaurante chino fusión",
+      "stars" : 5
+    }
+  } );
+
+  *
+  db.example.insert( {
+    "_id" : ObjectId("56b7ef80231ae25e27a68df5"),
+    "name" : "Tortas toño",
+    "address" : "Patria 456",
+    "restaurantId" : 54321,
+    "servesAlcohol" : false,
+    "menu" : [
+    {
+      "item" : "torta mini",
+      "price" : 20
+    },
+    {
+      "item" : "torta regular",
+      "price" : 45
+    },
+    {
+      "item" : "refresco",
+      "price" : 15
+    }
+    ],
+    "info":{
+      "description":"restaurante de tortas ahogada",
+      "stars" : 5
+    }
+  } );
+
+-> Find all documents (select):
+
+  * db.example.find();
+  * db.example.find().pretty();
+  * db.example.find({"name": "El chololo"});
+  * db.example.find({"name": "El chololo"}).pretty();
+  * db.example.find({"restaurantId": 12325}).pretty();
+  * db.example.find({"name": "fu-jou"}).pretty();
+  * db.example.find({"menu.price": "It's cheap"}).pretty();
+  * db.example.find({"menu.price": {$gt:30}}).pretty();
+  * db.example.find({"menu.price": {$eq:"It's cheap"}}).pretty();
+  * db.example.find({"name": "El chololo", "servesAlcohol": true});
+  * db.example.find({"name": "El chololo", "servesAlcohol": true}).pretty();
+  * db.example.find({$or: [{"name" : "El chololo"}, {"name" : "Tortas toño"}]}).pretty();
+  * db.example.find({ },{"name" : 1, "address" : 1}).pretty();
+  * db.example.find({ },{"name" : 1, "address" : 1, "_id" : 0}).pretty();
+
+-> Update Data:
+
+  * db.example.update({"restaurantId" : 12345}, {$set : {"address" : "Carretera Chapala No. 666"}});
+  * db.example.update({"restaurantId" : 12345}, {$set : {"address" : "Carretera Chapala No. 666"}}, {multi : true});
+  * db.example.update({"restaurantId" : 12345 }, {"name" : "El chololo" , "address" : "Carretera Chapala No. 666" , "restaurantId" : 12345});
+  * db.example.update({"restaurantId" : 12345 }, {"name" : "El chololo" , "address" : "Carretera Chapala No. 666", "restaurantId" : 12345 }, {upsert : true});
+
+-> Remove Data:
+
+  * db.example.remove({"name" : "El chololo"});
