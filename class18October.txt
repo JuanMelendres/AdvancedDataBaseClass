@@ -1,0 +1,79 @@
+SQL:
+  DataBase
+  Tables
+  Rows
+  Columns
+
+Cassandra:
+  Keyspaces
+  Tables
+  Rows
+  Columns
+
+MongoDB:
+  DataBase
+  Collection
+  Document Json
+  (Keys:Value) (cls para limpiar terminal)
+
+  Advantage Freedom from schema 
+  Mongo no crea nada hasta que tu insertes data en el
+  Cuando uasas el use solo va preparando todo, pero cuando ya haces el insert se crea todo
+
+  Example:
+
+    db.exam2.insertMany( [
+      {
+        "name" : "exam 2",
+        "student" : "student1",
+        "grade" : 10
+      },
+      {
+        "name" : "exam 2",
+        "student" : "student1",
+        "grade" : 10
+      },
+      {
+        "name" : "exam 2",
+        "student" : "student3",
+        "grade" : 9
+      }
+    ]);
+
+    db.exam2.find({}).pretty();
+    db.exam2.find({"grade" : 9}).pretty();
+    db.exam2.find({"grade" : 9}, {"name" : 1, "_id" : 0}).pretty();
+
+    db.createCollection("questions", {
+     validator: {
+        $jsonSchema: {
+          bsonType: "object",
+          required: [ "question", "answer", "value"],
+          properties: {
+            question: {
+               bsonType: "string",
+               description: "must be a string and is required"
+            },
+            answer: {
+               bsonType: "string",
+               description: "must be a string and is required"
+            },
+            value: {
+              bsonType: "int",
+               minimum: 0,
+               maximum: 10,
+               description: "must be an integer in [ 0, 10 ] and is required"
+            }
+          }
+        }
+      }
+    });
+
+    db.questions.insert([
+      { "_id": 1, "question": "question1", "answer": "B", "value": 5 },
+      { "_id": 2, "question": "question1", "answer": "A", "value":  10 }
+    ]);
+
+    db.getCollectionInfos()
+
+
