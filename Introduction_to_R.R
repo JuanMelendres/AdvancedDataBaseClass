@@ -55,17 +55,69 @@ mtx.1 == t(mtx.2)
 mtx.1[5,6] == mtx.2[5,6]
 
 # List 
-my.data.juanmelendres <- list(name = "juan antonio", age = 22, lastname = "melendres", 
-          countryoforigin = "mexico", cityoforigin = "zacatecas", 
-          favoritebook = "the c programming language", lengthofhair = 4, familysize = 4, 
-          degree = "computer system engineering", heigth = 1.75, fear = "failure",
-          nativelanguague = "spanish", semester = 6)
+#my.data.juanmelendres <- data.frame(name="juan", age=22, lastname="melendres", 
+          #countryoforigin="mexico", cityoforigin="zacatecas", 
+          #favoritebook="the c programming language", lengthofhair=4, familysize=4, 
+          #degree="computer system engineering", heigth=1.75, fear="failure",
+          #nativelanguague="spanish", semester=6, stringsAsFactors = F)
+
+my.data.alberto <- data.frame(name="alberto", age=41,
+                              lastname="de obeso", 
+                              countryoforigin="mexico", cityoforigin="guadalajara",
+                              favoritebook="demian", lengthofhair=4, familysize=6,
+                              degree="computer engineering", height=1.81,
+                              fear="rey kills kilo", nativelanguage="spanish", 
+                              semester=NA, stringsAsFactors = F)
+
+my.data.juanmelendres <- data.frame(name="juan", age=22,
+                              lastname="melendres", 
+                              countryoforigin="mexico", cityoforigin="zacatecas",
+                              favoritebook="the c programming language", lengthofhair=4, familysize=4,
+                              degree="computer system engineering", height=1.75,
+                              fear="failure", nativelanguage="spanish", 
+                              semester=6, stringsAsFactors = F)
+
+data.set <- rbind(my.data.alberto, my.data.juanmelendres)
+#data.set <- rbind(my.data.juanmelendres, my.data.alberto)
+
+colnames(my.data.juanmelendres)
+colnames(my.data.alberto)
+length(colnames(my.data.alberto))
+
+rbindhelper <- function(names1, names2) {
+  for (i in 1: length(names1)) {
+    print(paste(names1[i], "vs", names2[i], sep=" "))
+    if (names1[i] != names2[i]) {
+      print("Wrond names")
+    }
+  }
+}
+
+rbindhelper(colnames(my.data.alberto), colnames(my.data.juanmelendres))
 
 my.data.juanmelendres$age
 
 # data.frames
-tec.class.adb <- rbind(my.data.juanmelendres)
+tec.class.adb <- rbind(my.data.alberto, my.data.juanmelendres)
+nrow(tec.class.adb)
+str(tec.class.adb)
+#data.set
+colnames(data.set)
+colnames(my.data.juanmelendres)
+data.set <- rbind(my.data.alberto, my.data.juanmelendres)
+
+
 #Mac⁩ ▸ ⁨Usuarios⁩ ▸ ⁨juanantoniomelendresvilla⁩ ▸ ⁨Escritorio⁩
-setwd("/Users/juanantoniomelendresvilla/Desktop⁩")
-load("data.set.sample.R")
 data.set.sample
+getwd()
+setwd("/Users/juanantoniomelendresvilla/Downloads")
+load("data.set.R")
+data.set
+#write the csv file
+write.csv(data.set, file = "DataSet.csv", row.names = FALSE)
+# read the csv file
+read.csv(file = "DataSet.csv")
+#getwd()
+#setwd("/Users/juanantoniomelendresvilla/Escritorio⁩")
+#load("data.set.R")
+#data.set
