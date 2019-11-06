@@ -1,0 +1,46 @@
+-> Create database:
+
+  * use movies
+
+-> Insert into database:
+
+  *
+  db.topmovies.insert( {
+    "name": "The black hawk down",
+    "rate": 7.7,
+    "year": 2001,
+    "genre": "Action",
+    "director" : "Ridley Scott",
+    "stars" : 4
+  } );
+
+  *
+  db.topmovies.insert( {
+    "name": "The lord of the rings: the return of the king",
+    "rate": 8.9,
+    "year": 2003,
+    "genre": "Fantasy",
+    "director" : "Peter Jackson",
+    "stars" : 4.5
+  } );
+
+  *
+  db.topmovies.insert( {
+    "name": "Star Wars: Episode III - Revenge of the Sith",
+    "rate": 7.3,
+    "year": 2005,
+    "genre": "Fantasy",
+    "stars" : 4
+  } );
+
+  *
+  db.topmovies.insert( {
+    "name": "Star Wars: Episode VIII - Last Jedi",
+    "rate": 7.1,
+    "year": 2017,
+    "genre": "Fantasy",
+    "director" : "Rian Johnson",
+    "stars" : 4
+  } );
+
+J04n.K4r3n97@.16
