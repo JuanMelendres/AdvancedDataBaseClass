@@ -1,0 +1,52 @@
+Cassandra:
+
+CREATE KEYSPACE IF NOT EXISTS FinalProject WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 };
+
+create table glucose (
+	patient_id int,
+	glucose_level int,
+	glucose_date_of_study text,
+	primary key (patient_id, glucose_date_of_study)
+);
+
+copy glucose (patient_id, glucose_level, glucose_date_of_study) from 'Glucose2019.csv' with header = TRUE;
+
+create table oximetry (
+	patient_id int,
+	SpO2_level int,
+	Heart_rate_level int,
+	oximetry_date_of_study text,
+	primary key (patient_id, oximetry_date_of_study)
+);
+
+copy oximetry (patient_id, SpO2_level, Heart_rate_level, oximetry_date_of_study) from 'Oximetry2019.csv' with header = TRUE;
+
+create table Patient_analysis (
+	patient_id int Primary Key,
+	glucose_level int,
+	glucose_date_of_study text,
+	SpO2_level int,
+	Heart_rate_level int,
+	oximetry_date_of_study text
+);
+
+create table Patient_analysis (
+	patient_id int Primary Key,
+	oximetry_date_of_study text,
+	spo2_level int,
+	glucose_level int,
+	height float,
+	imc float,
+	weight float,
+	avbloodpressure int,
+	diastolix int,
+	systolic int,
+	highertheartrate int	
+);
+
+MongoDB:
+
+use patients;
+
+mongoimport --db patients --collection bloodpressure --file bloodPressure.json --jsonArray
+mongoimport --db patients --collection heightweigth --file Weight_Height.json --jsonArray
